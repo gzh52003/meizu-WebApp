@@ -72,35 +72,16 @@
 				classify: [{
 						Names: "手机"
 					}, {
-						Names: "双肩包"
+						Names: "耳机"
 					},
 					{
-						Names: "伞"
+						Names: "配件"
 					},
 					{
-						Names: "路由器"
+						Names: "生活"
 					},
-					{
-						Names: "数据线"
-					},
-					{
-						Names: "充电器"
-					},
-					{
-						Names: "排插"
-					},
-					{
-						Names: "卫衣"
-					},
-					{
-						Names: "T恤"
-					},
-					{
-						Names: "手机壳"
-					},
-					{
-						Names: "保护膜"
-					}
+					
+					
 				]
 
 
