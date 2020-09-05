@@ -27,7 +27,7 @@ const routes = [
 		path:'/goods/:id',
 		name:'Goods',
 		component:()=>import('../views/Goods.vue')
-
+	},{
 		path:'/mobile',
 		name:'Mobile',
 		component:()=>import('../views/Mobile.vue')
