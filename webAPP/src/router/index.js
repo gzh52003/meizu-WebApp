@@ -27,11 +27,18 @@ const routes = [
 		path:'/goods/:id',
 		name:'Goods',
 		component:()=>import('../views/Goods.vue')
-
+	},{
 		path:'/mobile',
 		name:'Mobile',
 		component:()=>import('../views/Mobile.vue')
-
+	},{
+		path:'/beadset',
+		name:'Beadset',
+		component:()=>import('../views/Beadset.vue')
+	},{
+		path:'/personal',
+		name:'Personal',
+		component:()=>import('../views/Personal.vue')
 	}
 	
 	
