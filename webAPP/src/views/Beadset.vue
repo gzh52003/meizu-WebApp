@@ -39,7 +39,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .van-grid-item__content{
     padding-top: 30px;
 

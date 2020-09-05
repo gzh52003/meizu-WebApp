@@ -72,7 +72,7 @@ Vue.use(GoodsActionIcon);
 	
 	
 
-<style lang="scss">
+<style lang="scss" scoped>
 html{
     font-size: 16px;
     margin: 0;

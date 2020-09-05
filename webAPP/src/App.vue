@@ -19,9 +19,14 @@
 		GridItem,
 		Sticky,
 		Popup,
-		Lazyload
-	} from "vant";
+		Lazyload,
+		NavBar ,
+		Checkbox, 
+		CheckboxGroup } from 'vant';
 	
+	Vue.use(Checkbox);
+	Vue.use(CheckboxGroup);
+	Vue.use(NavBar);
 	Vue.use(Grid);
 	Vue.use(GridItem);
 	Vue.use(Tabbar);

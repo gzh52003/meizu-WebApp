@@ -1,7 +1,7 @@
 <template>
 	<div style="background-color: #f4f4f4;">
 	<van-image width="100%" height="214" src="/images/phone.bg.jpg" />
-		<van-grid :border="false" gutter="2" :column-num="2">
+		<van-grid :border="false" gutter="1" :column-num="2">
 		  <van-grid-item @click="gotoDetail(item._id)" v-for="item in goodslist" :key="item._id">
 		    <van-image :src="item.img" />
 			<div class="hz-title">
@@ -47,7 +47,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped="">
 	.hz-title{
 		h6{
 			color:#999 ;

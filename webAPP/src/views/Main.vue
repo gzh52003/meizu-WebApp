@@ -124,7 +124,7 @@
 	};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.van-row .ellipsis {
 		transform: rotate(90deg);
 		line-height: 60px;
