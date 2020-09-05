@@ -17,6 +17,7 @@
     "sass-loader": "^10.0.1",
     "vant": "^2.10.3",
     "vue": "^2.6.11",
+    "vue-cli": "^2.9.6",
     "vue-router": "^3.4.3"
   },
   "devDependencies": {
