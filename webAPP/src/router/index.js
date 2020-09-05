@@ -48,6 +48,7 @@ const routes = [
 		name:'Goods',
 		component:()=>import('../views/Goods.vue')
 		},
+
 	
 	
 ]
