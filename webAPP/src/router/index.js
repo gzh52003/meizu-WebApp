@@ -33,6 +33,11 @@ const routes = [
 				name:'Mobile',
 				component:()=>import('../views/Mobile.vue')
 			
+			},
+			{
+				path:'/beadset',
+				name:'Beadset',
+				component:()=>import('../views/Beadset.vue')
 			}
 			
 		]
@@ -47,10 +52,12 @@ const routes = [
 		path:'/goods/:id',
 		name:'Goods',
 		component:()=>import('../views/Goods.vue')
-		},
 
-	
-	
+	},{
+		path:'/personal',
+		name:'Personal',
+		component:()=>import('../views/Personal.vue')
+	}
 ]
 
 const router = new VueRouter({

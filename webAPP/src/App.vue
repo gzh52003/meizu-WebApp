@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import Vue from 'vue';
+	import Vue from "vue";
 	import {
 		Col,
 		Row,
@@ -13,18 +13,15 @@
 		Image,
 		Button,
 		Icon,
-		Tabbar, 
+		Tabbar,
 		TabbarItem,
-		Grid, 
+		Grid,
 		GridItem,
-		NavBar,
-		Checkbox, 
-		CheckboxGroup 
-		} from 'vant';
-		
-	Vue.use(Checkbox);
-	Vue.use(CheckboxGroup);
-	Vue.use(NavBar);
+		Sticky,
+		Popup,
+		Lazyload
+	} from "vant";
+	
 	Vue.use(Grid);
 	Vue.use(GridItem);
 	Vue.use(Tabbar);
@@ -37,6 +34,9 @@
 	Vue.use(GridItem);
 	Vue.use(Col);
 	Vue.use(Row);
+	Vue.use(Sticky);
+	Vue.use(Popup);
+	Vue.use(Lazyload);
 
 	export default {
 		name: 'App',
@@ -44,6 +44,5 @@
 </script>
 
 <style lang="scss">
-
 
 </style>
