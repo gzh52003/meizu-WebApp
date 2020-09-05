@@ -45,7 +45,7 @@
 		Tabbar, 
 		TabbarItem,
 		Grid, 
-		GridItem 
+		GridItem,
 		 } from 'vant';
 
 	Vue.use(Grid);
@@ -56,7 +56,8 @@
 	Vue.use(Button);
 	Vue.use(Image);
 	Vue.use(Search);
-
+	Vue.use(Grid);
+	Vue.use(GridItem);
 	Vue.use(Col);
 	Vue.use(Row);
 
