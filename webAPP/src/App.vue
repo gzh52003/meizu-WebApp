@@ -1,5 +1,5 @@
 <template>
-	<div id="app" style="background-color: #ccc">
+	<div id="app" >
 		<van-row>
 			<van-col span="2"  style="padding-left: 10px;">
 			<van-icon name="search" size="26" />
@@ -48,6 +48,8 @@
 		GridItem,
 		 } from 'vant';
 
+	Vue.use(Grid);
+	Vue.use(GridItem);
 	Vue.use(Tabbar);
 	Vue.use(TabbarItem);
 	Vue.use(Icon);
@@ -70,8 +72,8 @@
 					text:'推荐',
 				},
 				{
-					name:"phone",
-					path:'/phone',
+					name:"mobile",
+					path:'/mobile',
 					text:'手机',
 					
 				},
@@ -96,7 +98,7 @@
 			}
 		},
 		created(){
-			console.log(this.$route)
+			
 		
 		},
 		
@@ -114,7 +116,7 @@
 	  border-bottom: 1px solid #007BFF;
  }
  .van-tabbar-item__text{
-	  border-bottom: 1px solid #007BFF;
+                                                                                                                                                                   
 	 font-size: 14px;
 	 padding-bottom: 5px;
 	
