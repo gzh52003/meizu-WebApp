@@ -43,7 +43,9 @@
 		Button,
 		Icon,
 		Tabbar, 
-		TabbarItem 
+		TabbarItem,
+		Grid, 
+		GridItem,
 		 } from 'vant';
 
 	Vue.use(Tabbar);
@@ -52,7 +54,8 @@
 	Vue.use(Button);
 	Vue.use(Image);
 	Vue.use(Search);
-
+	Vue.use(Grid);
+	Vue.use(GridItem);
 	Vue.use(Col);
 	Vue.use(Row);
 

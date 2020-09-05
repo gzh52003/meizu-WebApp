@@ -18,6 +18,15 @@ const routes = [
 		path:'/list',
 		name:'List',
 		component:()=>import('../views/List.vue')
+	},{
+		path:'/parts',
+		name:'Parts',
+		component:()=>import('../views/Parts.vue')
+	},{
+		// 详情页
+		path:'/goods/:id',
+		name:'Goods',
+		component:()=>import('../views/Goods.vue')
 	}
 	
 	
