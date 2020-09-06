@@ -6,6 +6,11 @@
 			 </van-swipe-item>
 		
 		</van-swipe>
+		<van-row style="text-align: center;">
+		  <van-col span="8"></van-col>
+		  <van-col span="8"></van-col>
+		  <van-col span="8"></van-col>
+		</van-row>
 	</div>
 </template>
 
