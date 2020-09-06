@@ -78,6 +78,7 @@
 			<em>{{item.skuprice}}</em>
 		  </van-grid-item>
 		</van-grid>
+
 	</div>
 </template>
 
