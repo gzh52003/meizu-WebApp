@@ -38,6 +38,11 @@ const routes = [
 				path:'/beadset',
 				name:'Beadset',
 				component:()=>import('../views/Beadset.vue')
+			},
+			{
+				path:'/life',
+				name:"Life",
+				component:()=>import('../views/Life.vue')
 			}
 			
 		]
@@ -47,7 +52,14 @@ const routes = [
 		path:'/login',
 		name:'Login',
 		component:()=>import('../views/Login.vue')
-  },{
+  },
+  
+  {
+  		path:'/reg',
+  		name:'Reg',
+  		component:()=>import('../views/Reg.vue')
+  },
+  {
 		path:'/cart',
 		name:'Cart',
 		component:()=>import('../views/Cart.vue')

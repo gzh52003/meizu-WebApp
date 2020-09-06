@@ -42,7 +42,7 @@
       </van-radio-group>
       <div class="btnLogin">
         <van-button type="primary">大号按钮</van-button>
-        <span>注册</span>
+        <span @click="goto">注册</span>
       </div>
     </van-form>
   </div>
@@ -64,6 +64,11 @@ export default {
     onSubmit(values) {
       console.log("submit", values);
     },
+	goto(){
+		this.$router.push({
+			name:"Reg"
+		})
+	}
   },
 };
 </script>

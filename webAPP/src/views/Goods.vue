@@ -187,6 +187,9 @@ html{
         margin-top: 5px;
         display:block;
         background: #fff;
+		&::before{
+			content: '￥';
+		}
     }
     .goodpay{
         display: block;

@@ -22,8 +22,16 @@
 		Lazyload,
 		NavBar ,
 		Checkbox, 
-		CheckboxGroup } from 'vant';
+		CheckboxGroup,
+		Form,
+		Field,
+		RadioGroup, 
+		Radio } from 'vant';
 	
+	Vue.use(Radio);
+	Vue.use(RadioGroup);
+	Vue.use(Form);
+	Vue.use(Field);
 	Vue.use(Checkbox);
 	Vue.use(CheckboxGroup);
 	Vue.use(NavBar);
