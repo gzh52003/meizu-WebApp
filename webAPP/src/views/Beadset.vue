@@ -1,5 +1,5 @@
 <template>
-	<div class="parts">
+	<div class="beadset">
 		<!--banner -->
         <van-image width="100%"  fit="fill" src="/images/beadset.jpg" ></van-image>
         <!--商品列表 -->

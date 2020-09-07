@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div style="background-color: #f4f4f4;">
     <van-image width="100%" height="214" src="/images/phone.bg.jpg" />
     <van-grid :border="false" gutter="2" :column-num="2">

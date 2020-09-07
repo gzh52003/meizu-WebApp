@@ -1,6 +1,9 @@
 <template>
   <div class="Personal">
-    <van-nav-bar left-text="返回" :border="false" left-arrow class="header">
+    <van-nav-bar class="header">
+      <template #left>
+        <van-icon name="arrow-left" @click="goback" size="25" color="#5b5b5b"></van-icon>
+      </template>
       <template #right>
         <div class="member-item">
           <van-image
@@ -10,7 +13,12 @@
             src="/images/portrait.png"
             style="margin-top:20px"
           />
-          <span @click="goto">点击登录</span>
+
+          <template>
+            <span v-if="currentUser" @click="loginOut" type="primary">{{currentUser.username}}</span>
+            <span @click="gotoLogin" v-else>登录</span>
+          </template>
+
         </div>
         <van-icon name="chat-o" size="20" />
       </template>
@@ -19,6 +27,7 @@
       value="查看全部订单"
       is-link
       style="margin-top:110px;border-bottom: 1px solid #f4f4f4;border-top: 10px solid #f3f3f3;"
+      @click="gotoOrder('/order')"
     >
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
@@ -59,12 +68,12 @@
         <span style="font-size:14px;margin-top:10px;color:#666">我的优惠券</span>
       </van-grid-item>
     </van-grid>
-    <van-cell title="M码通道" is-link style="height:54px;line-height: 40px;"/>
-    <van-cell title="手机号查询订单" is-link style="height:54px;line-height: 40px;" />
-    <van-cell title="以旧换新" is-link style="height:54px;line-height: 40px;"/>
-    <van-cell title="百城速达" is-link style="height:54px;line-height: 40px;"/>
-    <van-cell title="联系客服" is-link style="height:54px;line-height: 40px;"/>
-    <van-cell title="意见反馈" is-link style="height:54px;line-height: 40px;"/>
+    <van-cell title="M码通道" is-link style="height:53px;line-height: 42px;" />
+    <van-cell title="手机号查询订单" is-link style="height:53px;line-height: 42px;" />
+    <van-cell title="以旧换新" is-link style="height:53px;line-height: 42px;" />
+    <van-cell title="百城速达" is-link style="height:53px;line-height: 42px;" />
+    <van-cell title="联系客服" is-link style="height:53px;line-height: 42px;" />
+    <van-cell title="意见反馈" is-link style="height:53px;line-height: 42px;" />
   </div>
 </template>
 
@@ -91,7 +100,9 @@ Vue.use(CellGroup);
 export default {
   name: "Personal",
   data() {
-    return {};
+    return {
+      currentUser: {},
+    };
   },
   mounted() {
     // 控制菜单显示/隐藏
@@ -100,13 +111,40 @@ export default {
   destroyed() {
     this.$store.commit("displayTabbar", true);
   },
-  methods:{
-	  goto(){
-		  this.$router.push({
-			  name:"Login"
-		  })
-	  }
-  }
+
+
+  methods: {
+    // 登录
+    gotoLogin() {
+      this.$router.push("/login");
+    },
+    // 登出
+    loginOut() {
+      localStorage.removeItem("currentUser");
+      this.$router.push("/login");
+    },
+    // 获取用户名
+    getCurrentUser() {
+      const currentUser = localStorage.getItem("currentUser");
+      this.currentUser = JSON.parse(currentUser)[0];
+    },
+    //返回按钮
+    goback() {
+      this.$router.push("/home");
+    },
+    //跳转到订单页
+    gotoOrder(path) {
+      //1.点击查看订单
+      //2.判断用户是否登录
+      //3.登陆了(跳转到订单页)
+      //4.没登录(跳转到登录注册页面)
+      this.$router.push(path);
+    },
+  },
+  created() {
+    this.getCurrentUser();
+  },
+
 };
 </script>
 	

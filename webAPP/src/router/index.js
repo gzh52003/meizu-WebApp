@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 import Home from "../views/Home.vue"
 import Main from "../views/Main.vue"
+import Order from "../views/Order.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,7 +42,7 @@ const routes = [
 			},
 			{
 				path:'/life',
-				name:"Life",
+				name:'Life',
 				component:()=>import('../views/Life.vue')
 			}
 			
@@ -74,6 +75,44 @@ const routes = [
 		name:'Personal',
 		component:()=>import('../views/Personal.vue')
 
+	},
+	{
+		path:"/order",
+		name:'Order',
+		component:Order,
+		children:[
+			{
+				path:'/',
+				redirect:'/whole'
+			},
+				{
+				path:'/whole',
+				name:'Whole',
+				component:()=>import('../views/order/Whole.vue')
+			},
+			{
+				path:'/ready',
+				name:'Ready',
+				component:()=>import('../views/order/Ready.vue')
+			},
+			{
+				path:'/deliver',
+				name:'Deliver',
+				component:()=>import('../views/order/Deliver.vue')
+			
+			},
+			{
+				path:'/receiving',
+				name:'Receiving',
+				component:()=>import('../views/order/Receiving.vue')
+			},
+			{
+				path:'/refund',
+				name:'Refund',
+				component:()=>import('../views/order/Refund.vue')
+			}
+			
+		]
 	}
 ]
 
