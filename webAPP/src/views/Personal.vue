@@ -10,7 +10,7 @@
             src="/images/portrait.png"
             style="margin-top:20px"
           />
-          <span>点击登录</span>
+          <span @click="goto">点击登录</span>
         </div>
         <van-icon name="chat-o" size="20" />
       </template>
@@ -100,6 +100,13 @@ export default {
   destroyed() {
     this.$store.commit("displayTabbar", true);
   },
+  methods:{
+	  goto(){
+		  this.$router.push({
+			  name:"Login"
+		  })
+	  }
+  }
 };
 </script>
 	
