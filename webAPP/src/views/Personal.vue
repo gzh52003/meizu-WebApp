@@ -1,10 +1,10 @@
 <template>
   <div class="Personal">
-    <van-nav-bar class="header">
-      <template #left>
+    <van-row>
+      <van-col span="2">
         <van-icon name="arrow-left" @click="goback" size="25" color="#5b5b5b"></van-icon>
-      </template>
-      <template #right>
+      </van-col>
+      <van-col span="20">
         <div class="member-item">
           <van-image
             round
@@ -13,20 +13,20 @@
             src="/images/portrait.png"
             style="margin-top:20px"
           />
-
-          <template>
+          <div>
             <span v-if="currentUser" @click="loginOut" type="primary">{{currentUser.username}}</span>
             <span @click="gotoLogin" v-else>登录</span>
-          </template>
-
+          </div>
         </div>
+      </van-col>
+      <van-col span="2">
         <van-icon name="chat-o" size="20" />
-      </template>
-    </van-nav-bar>
+      </van-col>
+    </van-row>
     <van-cell
       value="查看全部订单"
       is-link
-      style="margin-top:110px;border-bottom: 1px solid #f4f4f4;border-top: 10px solid #f3f3f3;"
+      style="border-bottom: 1px solid #f4f4f4;border-top: 10px solid #f3f3f3;"
       @click="gotoOrder('/order')"
     >
       <!-- 使用 title 插槽来自定义标题 -->
@@ -112,7 +112,6 @@ export default {
     this.$store.commit("displayTabbar", true);
   },
 
-
   methods: {
     // 登录
     gotoLogin() {
@@ -144,26 +143,8 @@ export default {
   created() {
     this.getCurrentUser();
   },
-
 };
 </script>
 	
 <style lang='scss' scoped>
-.Personal {
-  .header {
-    .member-item {
-      width: 80px;
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0 auto;
-      height: 150px;
-      span {
-        font-size: 18px;
-      }
-    }
-  }
-}
 </style>
