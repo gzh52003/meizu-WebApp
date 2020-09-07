@@ -173,6 +173,7 @@ Vue.use(GoodsActionIcon);
             },
             add2cart(){
                 const{_id}=this.gooddata;
+				
                 const current = this.cartlist.filter(item=>item._id === _id)[0]
             if(current){
                 this.$store.commit('changeQty',{_id,qty:current.qty+1})

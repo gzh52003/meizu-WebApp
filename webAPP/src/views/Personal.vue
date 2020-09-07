@@ -120,13 +120,13 @@ export default {
     },
     // 登出
     loginOut() {
-      localStorage.removeItem("data");
+      localStorage.removeItem("currentUser");
       this.$router.push("/login");
     },
     // 获取用户名
     getCurrentUser() {
-      const currentUser = localStorage.getItem("data");
-      this.currentUser = JSON.parse(currentUser)[0];
+      const currentUser = localStorage.getItem("currentUser");
+      this.currentUser = JSON.parse(currentUser);
     },
     //返回按钮
     goback() {
