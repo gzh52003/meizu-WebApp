@@ -107,13 +107,13 @@
         
         <van-goods-action>
   <van-goods-action-icon icon="chat-o" text="客服" @click="onClickIcon" />
-  <van-goods-action-icon icon="cart-o" text="购物车" @click="onClickIcon" />
+  <van-goods-action-icon icon="cart-o" text="购物车" @click="gocart" />
   <van-goods-action-icon icon="shop-o" text="店铺" @click="onClickIcon" />
   <van-goods-action-button type="warning" text="加入购物车" @click="add2cart"/>
   <van-goods-action-button
     type="danger"
     text="立即购买"
-    @click="onClickButton"
+    @click="buyNow"
   />
 </van-goods-action>
 	</div>
@@ -128,7 +128,10 @@ import { Sku } from 'vant';
 import { Area } from 'vant';
 import areaList from "../assets/area"
 import { Toast } from "vant";
+import { Cell, CellGroup } from 'vant';
 
+Vue.use(Cell);
+Vue.use(CellGroup);
 Vue.use(Area);
 Vue.use(Sku);
 Vue.use(ActionSheet);
@@ -148,6 +151,11 @@ Vue.use(GoodsActionIcon);
                  showlocal:false,
              };
         },
+        computed:{
+            cartlist(){
+                return this.$store.state.cart.goodslist;
+            }
+        },
         methods:{
             
             async getData(id){
@@ -162,15 +170,12 @@ Vue.use(GoodsActionIcon);
             gohome(){
                 this.$router.replace('/home')
             },
+            gocart(){
+                this.$router.replace('/cart')
+            },
             showPopup() {
                 this.showlocal = true;
                 },
-                onClickIcon() {
-            Toast('点击图标');
-            },
-            onClickButton() {
-            Toast('点击按钮');
-            },
             add2cart(){
                 const{_id}=this.gooddata;
                 const current = this.cartlist.filter(item=>item._id === _id)[0]
@@ -184,8 +189,15 @@ Vue.use(GoodsActionIcon);
                 // 调用mutation方法
                 this.$store.commit('add',goods);
 
-                    }
-            }
+                    };
+                    Toast('提交成功');
+
+            },
+            buyNow(){
+      // 添加当前商品到购物车，并跳转到购物车页面
+      this.add2cart();
+      this.$router.push('/cart')
+    }
   
         },
         created(){

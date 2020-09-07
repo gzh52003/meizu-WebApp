@@ -50,7 +50,7 @@ const cart = {
 		// 添加购物车
 		add(state,goods){
 			state.goodslist.unshift(goods)
-			console.log('add to cart',gooods);
+			
 		},
 
 		//修改数据
