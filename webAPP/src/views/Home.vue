@@ -84,6 +84,8 @@
 
 <script>
 	import Vue from 'vue';
+	
+	import MzuFooter from './MzuFooter.vue'
 	import {
 		Swipe,
 		SwipeItem
@@ -205,6 +207,9 @@
 					}
 			})
 		}
+		},
+		components:{
+			MzuFooter
 		}
 	}
 </script>

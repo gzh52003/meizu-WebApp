@@ -13,11 +13,13 @@
                 </p>
             </van-grid-item>
         </van-grid>
+		<MzuFooter></MzuFooter>
+		
 	</div>
 </template>
 
 <script>
-	
+	import MzuFooter from './MzuFooter.vue'
 	export default{
         name:"Beadset",
 		data(){
@@ -44,6 +46,9 @@
 						}
 				})
 			}
+		},
+		components:{
+			MzuFooter
 		}
 		
 	}

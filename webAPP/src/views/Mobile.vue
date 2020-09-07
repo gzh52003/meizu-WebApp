@@ -11,15 +11,20 @@
 			</div>
 		  </van-grid-item>
 		</van-grid>
+			<mzu-footer></mzu-footer>
 	</div>
 </template>
 
 <script>
 	
+	
+	import MzuFooter from './MzuFooter.vue'
+	console.log(MzuFooter);
 	export default{
 		data(){
 			return{
-				goodslist:[]
+				goodslist:[],
+				
 			}
 		},
 		methods:{
@@ -42,6 +47,14 @@
 			
 			this.goodslist=data.data
 			
+		},
+		mounted(){
+			
+		
+		},
+		components:{
+			MzuFooter
+		
 		}
 		
 	}
