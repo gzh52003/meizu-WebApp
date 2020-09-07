@@ -18,7 +18,7 @@
 			</van-col>
 		</van-row>
 		<van-grid :border="false" :column-num="4">
-		  <van-grid-item v-for="item in muen" >
+		  <van-grid-item v-for="item in muen" :key="item.name">
 		    <van-image width="49" height="49" :src="item.img" />
 			<p>{{item.name}}</p>
 		  </van-grid-item>
@@ -38,7 +38,7 @@
 		<van-image src="/images/mu-17aa.jpg"></van-image>
 		
 		<van-grid :border="false" :column-num="2">
-		  <van-grid-item class="hz-item" v-for="item in MobileList">
+		  <van-grid-item class="hz-item" v-for="item in MobileList" :key="item.name">
 		    <van-image :src="item.img" />
 			<h4>{{item.name}}</h4>
 			<h6>【特惠】购机送壳膜套装</h6>
@@ -49,7 +49,7 @@
 			<van-col style="text-align: center;" span="24" ><h3 style="color: #000000;">魅族声学</h3></van-col>
 		</van-row>
 		<van-grid :border="false" :column-num="2">
-		  <van-grid-item @click="gotoDetail(item._id)" class="hz-item" v-for="item in BeadsetList">
+		  <van-grid-item @click="gotoDetail(item._id)" class="hz-item" v-for="item in BeadsetList" :key="item._id">
 		    <van-image :src="item.img" />
 			<h4>{{item.name}}</h4>
 			<h6 style="color:#999 ;;" class="van-ellipsis">{{item.title}}</h6>
@@ -60,7 +60,7 @@
 			<van-col style="text-align: center;" span="24" ><h3 style="color: #000000;">智能配件</h3></van-col>
 		</van-row>
 		<van-grid :border="false" :column-num="2">
-		  <van-grid-item @click="gotoDetail(item._id)" class="hz-item" v-for="item in Parts">
+		  <van-grid-item @click="gotoDetail(item._id)" class="hz-item" v-for="item in Parts" :key="item._id">
 		    <van-image :src="item.img" />
 			<h4>{{item.name}}</h4>
 			<h6 style="color:#999 ;;" class="van-ellipsis">{{item.title}}</h6>
@@ -71,7 +71,7 @@
 			<van-col style="text-align: center;" span="24" ><h3 style="color: #000000;">生活周边</h3></van-col>
 		</van-row>
 		<van-grid :border="false" :column-num="2">
-		  <van-grid-item @click="gotoDetail(item._id)" class="hz-item" v-for="item in Life">
+		  <van-grid-item @click="gotoDetail(item._id)" class="hz-item" v-for="item in Life" :key="item._id">
 		    <van-image :src="item.img" />
 			<h4>{{item.name}}</h4>
 			<h6 style="color:#999 ;;" class="van-ellipsis">{{item.title}}</h6>
