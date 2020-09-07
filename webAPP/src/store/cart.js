@@ -40,9 +40,7 @@ const cart = {
 		totalPrice(state,getters,rootState,rootGetters){
 			return state.goodslist.reduce((pre,item)=>pre+item.skuprice*item.qty,0)*100
 		},
-		test(){
-			return 'cart'
-		}
+	
 		
 	},
 

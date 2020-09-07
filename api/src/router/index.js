@@ -1,98 +1,64 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Add from '../views/home/add.vue'
-import User from '../views/user/User.vue'
-import UserEdit from '../views/user/UserEdit.vue'
-import Goods from '../views/goods/Goods.vue'
-import GoodsEdit from '../views/goods/GoodsEdit.vue'
-import Order from '../views/order/Order.vue'
-import NotFound from '../views/NotFound.vue'
-import Login from '../views/Login.vue'
-import Reg from '../views/Reg.vue'
+const {
+	Router,
+	urlencoded,
+	json
+} = require('express')
 
-Vue.use(VueRouter)
+const router = Router()
+const session = require('express-session')
+const token = require('../utils/token')
+const {formatData} = require('../utils/tools')
 
-const routes = [
+const userRouter = require('./user')
+const goodsRouter = require('./goods')
+const regRouter = require('./reg')
+const cors =require('../filter/cors')
+const vcodeRouter = require('./vcode')
+const loginRouter = require('./login')
+const uploadRouter = require('./upload.js')
+const orderRouter = require('./order')
 
-	{
-		path: '',
-		//默认地址
-		redirect: '/add'
-	},
-	{
-		path: '',
-		name: 'Home',
-		component: Home,
-		children: [{
-				path: '',
-				redirect: 'user'
-			},
-			{
-				path: '/add',
-				component: Add
-			},
-			{
-				path: 'user',
-				name: 'User',
-				component: User
-			},
-			{
-				path: 'useredit/:id',
-				name: 'userEdit',
-				component: UserEdit
-			},
-			{
-				path: 'goods',
-				name: 'Goods',
-				component: Goods
-			},
-			{
-				path: 'goodsedit/:id',
-				name: 'goodsEdit',
-				component: GoodsEdit
-			},
-			{
-				path: 'order',
-				name: 'Order',
-				component: Order
-			},
 
-			//默认子路由
-		],
-		redirect: '/add'
-	},
-	{
-		path: '/home',
-		name: 'Home',
-		component: Home
-	},
-	{
-		path: '/login',
-		name: 'Login',
-		component: Login
-	},
 
-	{
-		path: '/reg',
-		name: 'Reg',
-		component: Reg
-	},
-	{
-		path: '/404',
-		component: NotFound
-	},
-	{
-		path: '*',
-		redirect: '/404'
-	},
+router.use(cors)
 
-]
+//数据格式化中间件
+router.use(urlencoded({extended: false}), json())
 
-const router = new VueRouter({
-	mode: 'history',
-	base: process.env.BASE_URL,
-	routes
+router.use(session({
+    secret: 'hzl',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { 
+        // 设置cookie有效期
+        maxAge: 1000*60*60*2
+    }
+}))
+
+// /api/user
+//用户操作接口
+router.use('/user', userRouter)
+//
+router.use('/goods', goodsRouter)
+
+router.use('/reg', regRouter)
+router.use('/login', loginRouter)
+router.use('/upload', uploadRouter)
+router.use('/order', orderRouter)
+
+//校验token
+router.get('/jwtverify', (req, res) => {
+	const {authorization} = req.query
+	
+	if (token.verify(authorization)) {
+		res.send(formatData())
+	} else {
+		res.send(formatData({
+			code: 0
+		}))
+	}
 })
 
-export default router
+//
+router.use('/vcode',vcodeRouter)
+module.exports = router
