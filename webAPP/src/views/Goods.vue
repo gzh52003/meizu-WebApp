@@ -24,13 +24,13 @@
             </span>
             <p class="goodtitle">{{gooddata.title}} </p>
             <van-divider style="margin:0"></van-divider>
-        <van-cell is-link @click="show = true" class="payinfo">
+        <van-cell is-link @click="showserver = true" class="payinfo">
           <van-icon name="passed" />花呗分期
           <van-icon name="passed" />顺丰发货
           <van-icon name="passed" />7天无理由退货
           <van-icon name="arrow" style="float:right;line-height:45px;color:#5b5b5b"/>
         </van-cell>
-        <van-action-sheet v-model="show" title="服务说明" style="padding:0">
+        <van-action-sheet v-model="showserver" title="服务说明" style="padding:0">
              <div class="window-content">
                 <div>
                     <h5>
@@ -60,55 +60,96 @@
             </div>
                 </van-action-sheet>
         </div>
-        <div class="goodsku">
-        <van-sku
-            v-model="show"
-            :sku="sku"
-            :goods="goods"
-            :goods-id="goodsId"
-            :quota="quota"
-            :quota-used="quotaUsed"
-            :hide-stock="sku.hide_stock"
-            :message-config="messageConfig"
-            @buy-clicked="onBuyClicked"
-            @add-cart="onAddCartClicked"
-            />
+        <div class="goodsku" style="font-size:13px;color:#333">
+            <span style="font-size:13px;color:#999;margin-right:10px">已选</span>
+            {{gooddata.name}}
+            <span style="float:right;margin-right:5px;color:#666">x1</span>
         </div>
+        <div class="localtion" style="margin-top:5px;font-size:13px">
+            <van-cell is-link @click="showPopup">配送</van-cell>
+            <van-popup v-model="showlocal" position="bottom" :style="{ height: '50%' }" >
+            <van-area title="标题" :area-list="areaList" :search-result="searchResult" confirm="searchResult"/>
+            </van-popup>
+        </div>
+        <van-divider style="margin:0"></van-divider>
+        <div style="font-size:13px;color:#999;margin-top:5px;">
+        本商品由魅族负责发货并提供售后服务
+        </div>
+        <van-divider style="margin:5"></van-divider>
+        <div style="font-size:18px;font-weight:bolder;text-align: center;">
+        图文详情
+        <div>
+            <van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image><van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image><van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image><van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image><van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image><van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image><van-image  height="235" 
+        width="235"
+        :src="gooddata.img" 
+        fit="fill"></van-image>
+        </div>
+        
+        </div>
+        
+        <van-goods-action>
+  <van-goods-action-icon icon="chat-o" text="客服" @click="onClickIcon" />
+  <van-goods-action-icon icon="cart-o" text="购物车" @click="onClickIcon" />
+  <van-goods-action-icon icon="shop-o" text="店铺" @click="onClickIcon" />
+  <van-goods-action-button type="warning" text="加入购物车" @click="add2cart"/>
+  <van-goods-action-button
+    type="danger"
+    text="立即购买"
+    @click="onClickButton"
+  />
+</van-goods-action>
 	</div>
 </template>
 
 <script>
 import Vue from "vue";
 import { GoodsAction, GoodsActionIcon, GoodsActionButton } from "vant";
-import { createDeflate } from 'zlib';
 import { Divider } from 'vant';
 import { ActionSheet } from 'vant';
 import { Sku } from 'vant';
+import { Area } from 'vant';
+import areaList from "../assets/area"
+import { Toast } from "vant";
 
+Vue.use(Area);
 Vue.use(Sku);
 Vue.use(ActionSheet);
 Vue.use(Divider);
 Vue.use(GoodsAction);
 Vue.use(GoodsActionButton);
 Vue.use(GoodsActionIcon);
+
 	export default{
         name:'Goods',
         data(){
             return{
                 gooddata:[],
-                 show: false,
-                 sku: {
-        // 数据结构见下方文档
-                    },
-                    goods: {
-                        // 数据结构见下方文档
-                    },
-                    messageConfig: {
-                        // 数据结构见下方文档
-                    },
+                 areaList,
+                searchResult: [],
+                 showserver: false,
+                 showlocal:false,
              };
         },
         methods:{
+            
             async getData(id){
             // console.log('source=',this.$request.source);
             const{data}=await this.$request.get("/goods/"+id);
@@ -120,7 +161,32 @@ Vue.use(GoodsActionIcon);
             },
             gohome(){
                 this.$router.replace('/home')
+            },
+            showPopup() {
+                this.showlocal = true;
+                },
+                onClickIcon() {
+            Toast('点击图标');
+            },
+            onClickButton() {
+            Toast('点击按钮');
+            },
+            add2cart(){
+                const{_id}=this.gooddata;
+                const current = this.cartlist.filter(item=>item._id === _id)[0]
+            if(current){
+                this.$store.commit('changeQty',{_id,qty:current.qty+1})
+            }else{
+                const goods = {
+                ...this.gooddata,
+                    qty:1
+                }
+                // 调用mutation方法
+                this.$store.commit('add',goods);
+
+                    }
             }
+  
         },
         created(){
             console.log(666);
@@ -135,7 +201,7 @@ Vue.use(GoodsActionIcon);
 	
 	
 
-<style lang="scss" scoped>
+<style lang="scss">
 html{
     font-size: 16px;
     margin: 0;
@@ -231,6 +297,7 @@ html{
                 line-height: 1.4;
                 color: #999;
                 font-size: 12px;
+                
         }
     }
     
