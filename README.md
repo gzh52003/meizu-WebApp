@@ -2,7 +2,8 @@
 ## 演示
 	* 官网：https://m.meizu.com/index.html
 	* 上线网址
-		* 后台管理系统：http://39.107.234.250:2003
+		* 后端：[](http://39.107.234.250:2003)
+		* 后台管理系统：未上线
 		* webapp：未上线
 ## git仓库地址: https://github.com/gzh52003/meizu-WebApp
 

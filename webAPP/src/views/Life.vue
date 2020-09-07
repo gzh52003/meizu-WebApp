@@ -2,12 +2,12 @@
   <div style="background-color: #f4f4f4;">
     <van-image width="100%" height="214" src="/images/phone.bg.jpg" />
     <van-grid :border="false" gutter="2" :column-num="2">
-      <van-grid-item v-for="item in goodslist" :key="item._id">
+      <van-grid-item @click="gotoDetail(item._id)" v-for="item in goodslist" :key="item._id">
         <van-image :src="item.img" />
         <div class="hz-title">
           <h4>{{item.name}}</h4>
           <h6>{{item.title}}</h6>
-          <span class="skuprice" style="color: #EE0A24;">{{item.skuprice}}</span>
+          <em style="display:block">{{item.skuprice}} </em>
         </div>
       </van-grid-item>
     </van-grid>
@@ -15,22 +15,22 @@
       <h2 style="text-align: center;">为您推荐</h2>
       <van-grid :column-num="8" style="-webkit-flex-wrap: nowrap;overflow:auto" gutter="5px">
         <van-grid-item v-for="item of meunList" :key="item.name">
-          <a :href="item.href">
+         
             <img :src="item.img" />
             <div class="hz-title">
               <h4>{{item.name}}</h4>
               <span class="skuprice" style="color: #EE0A24;">{{item.skuprice}}</span>
             </div>
-          </a>
+         
         </van-grid-item>
       </van-grid>
     </div>
     <footer>
       <ul>
         <li v-for="item of meunFoot" :key="item.name">
-          <a :href="item.href">
+        
             <img :src="item.img" :lazy-src="item.lazySrc" />
-          </a>
+        
         </li>
       </ul>
       <van-row gutter="140">
@@ -190,8 +190,18 @@ export default {
       },
     });
     this.goodslist = data;
-    console.log(this.goodslist);
+  
   },
+  methods:{
+	  gotoDetail(id){
+	  	this.$router.push({
+	  		name:"Goods",
+	  		params:{
+	  			id
+	  			}
+	  	})
+	  }
+  }
 };
 </script>
 
@@ -203,6 +213,12 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  em{
+	 color: #cc0000;
+	 &::before{
+	 	content: '￥';
+		}
   }
 }
 .van-grid {

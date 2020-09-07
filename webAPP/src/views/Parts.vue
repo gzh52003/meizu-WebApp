@@ -86,6 +86,9 @@
            width: 100%;
            text-align: center;
            color: #cc0000;
+		   &::before{
+		   	content: '￥';
+			}
        }
    }
 }

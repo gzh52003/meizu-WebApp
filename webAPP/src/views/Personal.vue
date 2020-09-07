@@ -13,10 +13,12 @@
             src="/images/portrait.png"
             style="margin-top:20px"
           />
+
           <template>
             <span v-if="currentUser" @click="loginOut" type="primary">{{currentUser.username}}</span>
             <span @click="gotoLogin" v-else>登录</span>
           </template>
+
         </div>
         <van-icon name="chat-o" size="20" />
       </template>
@@ -110,6 +112,7 @@ export default {
     this.$store.commit("displayTabbar", true);
   },
 
+
   methods: {
     // 登录
     gotoLogin() {
@@ -141,6 +144,7 @@ export default {
   created() {
     this.getCurrentUser();
   },
+
 };
 </script>
 	

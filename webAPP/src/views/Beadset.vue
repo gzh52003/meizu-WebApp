@@ -4,7 +4,7 @@
         <van-image width="100%"  fit="fill" src="/images/beadset.jpg" ></van-image>
         <!--商品列表 -->
         <van-grid :column-num="2" :border="false" class="beadlist" gutter="5" >
-            <van-grid-item v-for="item in beadlist" :key="item._id" @click="gotoDetail(item._id)" style="width:49%">
+            <van-grid-item  v-for="item in beadlist" :key="item._id" @click="gotoDetail(item._id)" style="width:49%">
                 <van-image lazy-load :src="item.img"/>
                 <h4>{{item.name}} </h4>
                 <p class="price">
@@ -34,6 +34,16 @@
 			})
 			
 			this.beadlist=data.data
+		},
+		methods:{
+			gotoDetail(id){
+				this.$router.push({
+					name:"Goods",
+					params:{
+						id
+						}
+				})
+			}
 		}
 		
 	}
@@ -62,10 +72,15 @@
            color: #999;
        }
        em{
+		   
            margin-top: 5px;
            width: 100%;
            text-align: center;
            color: #cc0000;
+		   &::before{
+		   	content: '￥';
+		   }
+		   
        }
    }
 }

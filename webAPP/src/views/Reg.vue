@@ -1,8 +1,9 @@
 <template>
   <div>
     <h2>欢迎注册</h2>
-    <van-form @submit="onSubmit" :modul="reul" >
+    <van-form @submit="onSubmit" :modul="reul">
       <van-field
+        @blur="checkName"
         name="用户名"
         v-model="reul.username"
         placeholder="手机号/ Flyme 账号"
@@ -19,32 +20,14 @@
         maxlength="12"
         size="large"
       />
-      <van-field 
-	  name="验证码" 
-	  v-model="reul.vcode" 
-	  :rules="[{ required: true, message: '请填写验证码' }]"
-	  center clearable placeholder="请输入短信验证码" size="large">
-        <template #button>
-          <span
-            @click="getVcode"
-            v-html="vcodeSvg"
-            class="vcode"
-            size="small"
-            type="primary"
-            style="background:#58bc58;"
-          ></span>
-        </template>
-      </van-field>
-      <van-radio-group v-model="radio">
-        <van-radio name="1" shape="square">
-			注册账号即表示您同意并愿意遵守
-			<a href="">Flyme账号服务协议</a>、
-			<a href="">法律声明</a>和
-			<a href="">隐私政策</a>
-		</van-radio>
-      </van-radio-group>
+      <van-checkbox v-model="checked" shape="square" style="font-size:12px">
+        注册账号即表示您同意并愿意遵守
+        <a href>Flyme账号服务协议</a>、
+        <a href>法律声明</a>和
+        <a href>隐私政策</a>
+      </van-checkbox>
       <div class="btnReg">
-        <van-button type="primary">立即注册</van-button>
+        <van-button @click="onReg" type="primary">立即注册</van-button>
         <span @click="gotoLogin">登录</span>
       </div>
     </van-form>
@@ -53,7 +36,7 @@
 
 <script>
 import Vue from "vue";
-import { Checkbox, CheckboxGroup } from "vant";
+import { Checkbox, CheckboxGroup, Toast } from "vant";
 
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
@@ -69,49 +52,65 @@ export default {
         },
       ],
       active: 0,
-      radio: true,
+      checked: true,
       vcodeSvg: "",
     };
   },
   methods: {
-    async onSubmit(values) {
-	  console.log("submit", values);
-	  const username = this.reul.username
-      const { data } = await this.$request.post("/reg", {
-		  ...this.reul
-	  });
+    onSubmit(values) {
+      console.log("submit", values);
+    },
+    // 判断用户名是否存在
+    async checkName() {
+      const username = this.reul.username;
+      const { data } = await this.$request.get("/reg/check", {
+        params: {
+          username,
+        },
+      });
       console.log(data);
+      if (data.code === 0) {
+        const repeat = this.reul.username.length;
+        if (repeat === 0) {
+          Toast.fail("用户名不能为空");
+        } else {
+          Toast.fail("用户名已存在");
+        }
+      }
     },
-    async getVcode() {
-      const {
-        data: { data },
-      } = await this.$request.get("/vcode");
-      this.vcodeSvg = data;
+    // 注册
+    async onReg() {
+      const { data } = await this.$request.post("/reg", {
+        ...this.reul,
+      });
+      if (data.code === 1) {
+        Toast.success("注册成功");
+        this.$router.push("/login");
+      } else {
+        Toast.fail("用户名或密码不能为空");
+      }
     },
-    gotoLogin(){
-      this.$router.push('/login')
-    }
-  },
-  created() {
-    this.getVcode();
+    gotoLogin() {
+      this.$router.push("/login");
+    },
   },
 };
 </script>
 	
 
 <style lang="scss" scoped>
-h2{
-	text-align: center;
+h2 {
+  text-align: center;
 }
 .van-cell--large {
   width: 80%;
   margin: 20px auto;
   border: 2px solid #ccc;
 }
-.van-radio-group {
+.van-checkbox {
   padding: 0 40px;
-  a{
-	  color: #00a7ea;
+  a {
+    color: #00a7ea;
   }
 }
 .van-field__button {

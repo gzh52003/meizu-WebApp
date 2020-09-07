@@ -7,7 +7,7 @@
 			<div class="hz-title">
 				<h4>{{item.name}}</h4>
 				<h6>{{item.title}}</h6>
-				<span class="skuprice" style="color: #EE0A24;">{{item.skuprice}}</span>
+				<em>{{item.skuprice}}</em>
 			</div>
 		  </van-grid-item>
 		</van-grid>
@@ -47,7 +47,7 @@
 	}
 </script>
 
-<style lang="scss" scoped="">
+<style lang="scss" scoped>
 	.hz-title{
 		h6{
 			color:#999 ;
@@ -55,6 +55,12 @@
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis
+		}
+		em{
+			color: #CC0000;
+			&::before{
+				content: '￥';
+			}
 		}
 	}
 	.van-grid{
