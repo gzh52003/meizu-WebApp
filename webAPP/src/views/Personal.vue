@@ -119,12 +119,12 @@ export default {
     },
     // 登出
     loginOut() {
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem("data");
       this.$router.push("/login");
     },
     // 获取用户名
     getCurrentUser() {
-      const currentUser = localStorage.getItem("currentUser");
+      const currentUser = localStorage.getItem("data");
       this.currentUser = JSON.parse(currentUser)[0];
     },
     //返回按钮

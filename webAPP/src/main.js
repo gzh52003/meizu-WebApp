@@ -7,7 +7,7 @@ import request from './utils/request.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$request = request
-console.log(store);
+
 new Vue({
 
 	router,

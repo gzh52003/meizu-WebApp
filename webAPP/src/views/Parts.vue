@@ -13,12 +13,14 @@
                 </p>
             </van-grid-item>
         </van-grid>
+		
+		<MzuFooter></MzuFooter>
 	</div>
 </template>
 
 <script>
 
-
+import MzuFooter from './MzuFooter.vue'
 	export default{
         name:'Parts',
         data(){
@@ -26,7 +28,9 @@
                 partslist:[],
             };
         },
-        components:{},
+        components:{
+			MzuFooter
+		},
         methods:{
             // 点击事件，点击商品跳转详情页
             gotoDetail(id){
