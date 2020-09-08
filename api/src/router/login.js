@@ -19,10 +19,10 @@ router.get('/', async (req, res) => {
 
 	// console.log(req,999);
 	
- // if (vcode !== req.session.vcode) {
- //        res.send(formatData({ code: 10 }))
- //        return;
- //    }
+ if (vcode !== req.session.vcode) {
+        res.send(formatData({ code: 10 }))
+        return;
+    }
 
 	password = md5(password)
 

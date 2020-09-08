@@ -3,8 +3,8 @@
 	* 官网：https://m.meizu.com/index.html
 	* 上线网址
 		* 后端：[](http://39.107.234.250:2003)
-		* 后台管理系统：未上线
-		* webapp：未上线
+		* 后台管理系统：[](http://39.107.234.250:2004)
+		* webapp：[](http://39.107.234.250:2005)
 ## git仓库地址: https://github.com/gzh52003/meizu-WebApp
 
 ## 团队与分工
@@ -29,8 +29,13 @@
 		* 宋永基
 			* webApp生活模块静态页面和跳转详情页的编写
 			* 登陆注册功能的实现
+			* 订单页登陆才能查看业务编写
 ## 项目页面截图（3-5张）
-	![](./img/xxx.jpg)
+	![](./img/webapp首页.png)
+	![](./img/个人中心.png)
+	![](./img/购物车.png)
+	![](./img/详情页.png)
+	![](./img/后台管理系统首页.png)
 
 ## 项目目录说明
 
@@ -44,7 +49,7 @@
 │      ├─router		接口文件
 │	   └─utils		工具包
 │   
-├─backstage		后台管理系统项目
+├─express	后台管理系统项目
 │  ├─public		网站根目录
 │  │  └─images
 │  └─src
@@ -63,5 +68,6 @@
     └─src
         ├─assets	静态资源	
         ├─router	路由配置
+		├─store		vuex
         ├─utils		工具包
         └─views		页面
