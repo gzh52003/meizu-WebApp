@@ -94,13 +94,15 @@
         fit="fill"></van-image><van-image  height="235" 
         width="235"
         :src="gooddata.img" 
-        fit="fill"></van-image><van-image  height="235" 
+        fit="fill"></van-image>
+        <van-image  height="235" 
         width="235"
         :src="gooddata.img" 
         fit="fill"></van-image><van-image  height="235" 
         width="235"
         :src="gooddata.img" 
         fit="fill"></van-image>
+        <van-image width="100%"  src="../../public/images/Cgbj0F8Wh4eAVah-AAj5Zingync909.jpg" />
         </div>
         
         </div>
@@ -128,10 +130,7 @@ import { Sku } from 'vant';
 import { Area } from 'vant';
 import areaList from "../assets/area"
 import { Toast } from "vant";
-import { Cell, CellGroup } from 'vant';
 
-Vue.use(Cell);
-Vue.use(CellGroup);
 Vue.use(Area);
 Vue.use(Sku);
 Vue.use(ActionSheet);
@@ -173,6 +172,9 @@ Vue.use(GoodsActionIcon);
             gocart(){
                 this.$router.replace('/cart')
             },
+            onClickIcon(){
+                Toast('哈哈哈哈哈哈');
+            },
             showPopup() {
                 this.showlocal = true;
                 },
@@ -190,7 +192,7 @@ Vue.use(GoodsActionIcon);
                 this.$store.commit('add',goods);
 
                     };
-                    Toast('提交成功');
+                    Toast.success('提交成功');
 
             },
             buyNow(){
@@ -203,8 +205,7 @@ Vue.use(GoodsActionIcon);
         created(){
             console.log(666);
             const{id}=this.$route.params;
-            console.log("$route=", this.$route.params.id);
-            console.log("this=", this);
+
             this.getData(id);
         }
 		
