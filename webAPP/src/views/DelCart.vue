@@ -5,7 +5,7 @@
 				<van-icon name="arrow-left" @click="goback" size="25" color="#5b5b5b"></van-icon>
 			</template>
 			<template #right>
-				<p v-on:click="gotoDel">编辑</p>
+				<p v-on:click="goto">完成</p>
 			</template>
 		</van-nav-bar>
 		<div class="hz-group" style="background-color: #fff;">
@@ -13,20 +13,29 @@
 			</van-checkbox>
 
 		</div>
-		<van-card  @click-thumb="gotoDetail(item._id)" v-for="item in goodslist" :num="item.qty" :desc="item.title" :title="item.name" :thumb="item.img" :key="item._id">
+		<van-card v-for="item in goodslist" :desc="item.title" :title="item.name" :thumb="item.img" :key="item._id">
 			<template #tag>
-				<van-checkbox :label-position="left" style="margin-right: 10px;" v-model="item.checked"></van-checkbox>
+				<van-checkbox style="margin-right: 10px;" v-model="item.checked"></van-checkbox>
 			</template>
 			<template #price>
 				<span class="hz-price">{{item.skuprice}}</span>
 			</template>
+			
+			<template #footer>
+				<van-stepper :value="item.qty" input-width="20px" button-size="20px" theme="round" async-change integer @change="changeQty(item._id,$event)" />
+				  <!-- async-change: 点击按钮时不会直接修改数量，而是根据value的值来显示 -->
+				</p>
+			</template>
 		</van-card>
 
-		<van-submit-bar :price="totalPrice" button-text="提交订单">
+		<van-submit-bar  button-text="删除">
+		<div style="position: absolute; left: 10px;">
+			
 			<van-checkbox v-model="checkAll">全选</van-checkbox>
-			<template #tip>
-				你的收货地址不支持同城送, <span>修改地址</span>
-			</template>
+		</div>
+			
+	
+			
 		</van-submit-bar>
 
 	</div>
@@ -34,21 +43,16 @@
 
 <script>
 	import Vue from 'vue';
-	import {
-		mapState,
-		mapGetters,
-		mapMutations,
-		MapActions
-	} from 'vuex'
-	import {
-		Card,
-		 SubmitBar
-		  } from 'vant';
+import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
+import { Card, Step, Steps, SubmitBar, Stepper } from "vant";
 	
-	Vue.use(SubmitBar);
 	Vue.use(Card);
+	Vue.use(Step);
+	Vue.use(Steps);
+	Vue.use(SubmitBar)
+	Vue.use(Stepper)
 	export default {
-		name: "Cart",
+		name: "DelCart",
 		data() {
 			return {
 				// checked: true
@@ -56,19 +60,21 @@
 		},
 
 		methods: {
-			gotoDetail(id){
-			  this.$router.push('/goods/'+id);
-			},
 			goback() {
 				this.$router.go(-1)
 				
 			},
-			gotoDel(){
+			goto(){
 				this.$router.push({
-					name:"DelCart"
+					name:"Cart"
 				})
-				console.log(1);
-			}
+			},
+				changeQty(id,qty){
+				this.$store.dispatch('changeQtyAsync',{_id:id,qty})
+				}
+				
+			
+			
 
 		},
 		computed: {
@@ -91,10 +97,8 @@
 				},
 				
 			},
-			totalPrice(){
-				return this.$store.getters.totalPrice
 			
-			}
+			
 		}
 
 

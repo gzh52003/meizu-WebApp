@@ -78,7 +78,7 @@
 			<em>{{item.skuprice}}</em>
 		  </van-grid-item>
 		</van-grid>
-
+			<mzu-footer></mzu-footer>
 	</div>
 </template>
 

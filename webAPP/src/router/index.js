@@ -44,11 +44,17 @@ const routes = [
 				path:'/life',
 				name:'Life',
 				component:()=>import('../views/Life.vue')
-			}
+			},
+		
 			
 		]
 	}
 	,
+	{
+		path:'/delcart',
+		name:'DelCart',
+		component:()=>import('../views/DelCart.vue')
+	},
 	{
 		path:'/login',
 		name:'Login',

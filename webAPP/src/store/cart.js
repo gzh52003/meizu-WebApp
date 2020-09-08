@@ -5,6 +5,7 @@ const cart = {
 
 	state: {
 		goodslist: [{
+			"_id":"5f54886f4db9fa8371965dc6",
 			"skuid": "10032",
 			"name": "魅族 Note9",
 			"skuprice": 1199,
@@ -15,6 +16,7 @@ const cart = {
 			qty:1,
 			checked: false
 		}, {
+			"_id":"5f54886f4db9fa8371965e0e",
 			"skuid": "10090",
 			"name": "魅族 Note8",
 			"skuprice": 899,
@@ -25,6 +27,7 @@ const cart = {
 			qty:4,
 			checked: false
 		}, {
+			"_id":"5f54886f4db9fa8371965e2e",
 			"skuid": "10390",
 			"name": "魅族 16X",
 			"skuprice": 1198,
@@ -34,7 +37,8 @@ const cart = {
 			"classify": "手机",
 			qty:10,
 			checked: false
-		}]
+		}],
+		GoodsStar:[]
 	},
 	getters:{
 		totalPrice(state,getters,rootState,rootGetters){
@@ -95,7 +99,14 @@ const cart = {
             const {data} = await request.get(`/cart`);
             context.commit('initCart',data.data)
 
-        }
+        },
+		// async getData(){
+		// 	const {data:GoodsStar} = await request.get('/goods')
+			
+		// 	state.GoodsStar = GoodsStar.data
+			
+			
+		// }
     }
 }
 
