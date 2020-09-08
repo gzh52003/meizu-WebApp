@@ -5,7 +5,7 @@
         <van-icon name="arrow-left" @click="goback" size="25" color="#5b5b5b"></van-icon>
       </van-col>
       <van-col span="20">
-        <div class="member-item">
+        <div class="member-item" style="line-height: 40px;">
           <van-image
             round
             width="80px"
@@ -14,7 +14,7 @@
             style="margin-top:20px"
           />
           <div>
-            <span v-if="currentUser" @click="loginOut" type="primary">{{currentUser.username}}</span>
+            <span v-if="currentUser" @click="loginOut">{{currentUser.username}}</span>
             <span @click="gotoLogin" v-else>登录</span>
           </div>
         </div>
@@ -27,7 +27,7 @@
       value="查看全部订单"
       is-link
       style="border-bottom: 1px solid #f4f4f4;border-top: 10px solid #f3f3f3;"
-      @click="gotoOrder('/order')"
+      @click="gotoOrder"
     >
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
@@ -86,7 +86,8 @@ import {
   Image as VanImage,
   Icon,
   Cell,
-  CellGroup,
+  CellGroup, 
+  Dialog
 } from "vant";
 
 Vue.use(NavBar);
@@ -96,6 +97,8 @@ Vue.use(Icon);
 Vue.use(VanImage);
 Vue.use(Cell);
 Vue.use(CellGroup);
+Vue.use(Dialog);
+
 
 export default {
   name: "Personal",
@@ -119,25 +122,37 @@ export default {
     },
     // 登出
     loginOut() {
-      localStorage.removeItem("currentUser");
-      this.$router.push("/login");
+      Dialog.confirm({
+        message: "是否要切换账号",
+      })
+        .then(() => {
+          localStorage.removeItem("currentUser");
+          this.$router.push('/login')
+        })
+        .catch(() => {
+          return 
+        });
     },
     // 获取用户名
     getCurrentUser() {
       const currentUser = localStorage.getItem("currentUser");
-      this.currentUser = JSON.parse(currentUser);
+      this.currentUser = JSON.parse(currentUser)[0];
     },
     //返回按钮
     goback() {
       this.$router.push("/home");
     },
     //跳转到订单页
-    gotoOrder(path) {
-      //1.点击查看订单
-      //2.判断用户是否登录
-      //3.登陆了(跳转到订单页)
-      //4.没登录(跳转到登录注册页面)
-      this.$router.push(path);
+    gotoOrder() {
+      //判断用户是否登录
+      const currentUser = localStorage.getItem("currentUser");
+      if(currentUser){
+        //登陆了(跳转到订单页)
+        this.$router.push('/whole')
+      }else{
+        //没登录(跳转到登录注册页面)
+        this.$router.push('/login')
+      }
     },
   },
   created() {
