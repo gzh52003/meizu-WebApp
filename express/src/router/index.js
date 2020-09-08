@@ -7,6 +7,7 @@ import UserEdit from '../views/user/UserEdit.vue'
 import Goods from '../views/goods/Goods.vue'
 import GoodsEdit from '../views/goods/GoodsEdit.vue'
 import Order from '../views/order/Order.vue'
+import OrderEdit from '../views/order/OrderEdit.vue'
 import NotFound from '../views/NotFound.vue'
 import Login from '../views/Login.vue'
 import Reg from '../views/Reg.vue'
@@ -57,7 +58,11 @@ const routes = [
 				name: 'Order',
 				component: Order
 			},
-
+			{
+				path: 'orderedit/:id',
+				name: 'orderEdit',
+				component: OrderEdit
+			},
 			//默认子路由
 		],
 		redirect: '/add'

@@ -27,6 +27,15 @@ router.get('/', async (req, res) => {
 	}))
 
 })
+router.get('/:id/kucun', async (req, res) => {
+	//处理排序参数
+	const {id} = req.params;
+	var kucun = 10
+	res.send(formatData({
+		data: kucun
+	}))
+
+})
 
 //专为分也打造的接口
 router.get('/paging', async (req, res) => {

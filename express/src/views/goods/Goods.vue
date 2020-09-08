@@ -69,7 +69,7 @@
 				goodsName: {
 					paging: "false"
 				},
-				classify: [{
+				classify: [{	
 						Names: "手机"
 					}, {
 						Names: "耳机"
