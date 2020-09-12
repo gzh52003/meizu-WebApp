@@ -129,8 +129,8 @@ import { ActionSheet } from 'vant';
 import { Sku } from 'vant';
 import { Area } from 'vant';
 import areaList from "../assets/area"
-import { Toast } from "vant";
-
+import { Toast,Cell } from "vant";
+Vue.use(Cell)
 Vue.use(Area);
 Vue.use(Sku);
 Vue.use(ActionSheet);
@@ -152,7 +152,7 @@ Vue.use(GoodsActionIcon);
         },
         computed:{
             cartlist(){
-                return this.$store.state.cart.goodslist;
+                return this.$store.state.cart.GoodsStar;
             }
         },
         methods:{
@@ -160,7 +160,7 @@ Vue.use(GoodsActionIcon);
             async getData(id){
             // console.log('source=',this.$request.source);
             const{data}=await this.$request.get("/goods/"+id);
-            console.log('data=',data);
+         
             this.gooddata=data.data
             },
             goback(){
@@ -180,11 +180,13 @@ Vue.use(GoodsActionIcon);
                 },
             add2cart(){
                 const{_id}=this.gooddata;
-				
+			
                 const current = this.cartlist.filter(item=>item._id === _id)[0]
             if(current){
                 this.$store.commit('changeQty',{_id,qty:current.qty+1})
+				
             }else{
+			
                 const goods = {
                 ...this.gooddata,
                     qty:1
@@ -204,7 +206,8 @@ Vue.use(GoodsActionIcon);
   
         },
         created(){
-            console.log(666);
+			
+            console.log(this.cartlist);
             const{id}=this.$route.params;
 
             this.getData(id);

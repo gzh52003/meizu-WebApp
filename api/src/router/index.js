@@ -17,7 +17,7 @@ const vcodeRouter = require('./vcode')
 const loginRouter = require('./login')
 const uploadRouter = require('./upload.js')
 const orderRouter = require('./order')
-
+const cartRouter = require('./cart.js')
 
 
 router.use(cors)
@@ -45,6 +45,7 @@ router.use('/reg', regRouter)
 router.use('/login', loginRouter)
 router.use('/upload', uploadRouter)
 router.use('/order', orderRouter)
+router.use('/cart', cartRouter)
 
 //校验token
 router.get('/jwtverify', (req, res) => {

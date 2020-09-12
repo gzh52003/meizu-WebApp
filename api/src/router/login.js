@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
 			}))
 			return
 		}
-		res.send(formatData({data: result}))
+		res.send(formatData({data: result[0]}))
 	} else {
 		res.send(formatData({
 			code: 0

@@ -47,6 +47,7 @@
 			
 			this.goodslist=data.data
 			
+			console.log(this.goodslist)
 		},
 		mounted(){
 			

@@ -9,7 +9,7 @@ const mongo = require('../utils/mongo')
 //查询商品
 router.get('/', async (req, res) => {
 	let {
-		page = 1, size = 10, sort = 'skuid'
+		page = 1, size = 10, sort = 'qty'
 	} = req.query
 	const limit = size * 1
 	const skip = (page - 1) * size
