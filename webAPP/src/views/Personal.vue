@@ -136,7 +136,7 @@ export default {
     // 获取用户名
     getCurrentUser() {
       const currentUser = localStorage.getItem("currentUser");
-      this.currentUser = JSON.parse(currentUser)[0];
+      this.currentUser = JSON.parse(currentUser);
     },
     //返回按钮
     goback() {

@@ -180,6 +180,7 @@
 			})
 		
 		this.BeadsetList=BeadsetList.data
+	
 		
 		const {data:Parts} = await this.$request.get('/goods/classify/:id',{
 			params:{

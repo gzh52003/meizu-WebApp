@@ -13,29 +13,39 @@
 			</van-checkbox>
 
 		</div>
-		<van-card v-for="item in goodslist" :desc="item.title" :title="item.name" :thumb="item.img" :key="item._id">
-			<template #tag>
-				<van-checkbox style="margin-right: 10px;" v-model="item.checked"></van-checkbox>
-			</template>
-			<template #price>
-				<span class="hz-price">{{item.skuprice}}</span>
-			</template>
-			
-			<template #footer>
-				<van-stepper :value="item.qty" input-width="20px" button-size="20px" theme="round" async-change integer @change="changeQty(item._id,$event)" />
-				  <!-- async-change: 点击按钮时不会直接修改数量，而是根据value的值来显示 -->
-				</p>
-			</template>
-		</van-card>
+		<template v-for="item in goodslist">
+			<van-row style="background-color: #fff;">
+				<van-col span="2" style="padding:40px 0px 0px 10px; ">
+					<van-checkbox class="hz-checkbox" style=" psomargin-right: 10px; z-index: 100;" v-model="item.checked"></van-checkbox>
 
-		<van-submit-bar  button-text="删除">
-		<div style="position: absolute; left: 10px;">
-			
-			<van-checkbox v-model="checkAll">全选</van-checkbox>
-		</div>
-			
-	
-			
+				</van-col>
+				<van-col span="22">
+
+
+					<van-card :desc="item.title" :title="item.name" :thumb="item.img" :key="item._id">
+						<template #price>
+							<span class="hz-price">{{item.skuprice}}</span>
+						</template>
+
+						<template #footer>
+							<van-stepper :value="item.qty" input-width="20px" button-size="20px" theme="round" async-change integer @change="changeQty(item._id,$event)" />
+							<!-- async-change: 点击按钮时不会直接修改数量，而是根据value的值来显示 -->
+							</p>
+						</template>
+					</van-card>
+				</van-col>
+			</van-row>
+		</template>
+
+
+		<van-submit-bar button-text="删除">
+			<div style="position: absolute; left: 10px;">
+
+				<van-checkbox v-model="checkAll">全选</van-checkbox>
+			</div>
+
+
+
 		</van-submit-bar>
 
 	</div>
@@ -43,9 +53,20 @@
 
 <script>
 	import Vue from 'vue';
-import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
-import { Card, Step, Steps, SubmitBar, Stepper } from "vant";
-	
+	import {
+		mapState,
+		mapGetters,
+		mapMutations,
+		mapActions
+	} from 'vuex';
+	import {
+		Card,
+		Step,
+		Steps,
+		SubmitBar,
+		Stepper
+	} from "vant";
+
 	Vue.use(Card);
 	Vue.use(Step);
 	Vue.use(Steps);
@@ -62,43 +83,46 @@ import { Card, Step, Steps, SubmitBar, Stepper } from "vant";
 		methods: {
 			goback() {
 				this.$router.go(-1)
-				
+
 			},
-			goto(){
+			goto() {
 				this.$router.push({
-					name:"Cart"
+					name: "Cart"
 				})
 			},
-				changeQty(id,qty){
-				this.$store.dispatch('changeQtyAsync',{_id:id,qty})
-				}
-				
-			
-			
+			changeQty(id, qty) {
+				this.$store.dispatch('changeQtyAsync', {
+					_id: id,
+					qty
+				})
+			}
+
+
+
 
 		},
 		computed: {
 			goodslist() {
-				
+
 				return this.$store.state.cart.goodslist
 			},
-			checkAll:{
-				get(){
+			checkAll: {
+				get() {
 					// console.log(this.goodslist);
-					return this.goodslist.every(item=>item.checked)
-				
+					return this.goodslist.every(item => item.checked)
+
 				},
-				set(val){
-					this.goodslist = this.goodslist.map(item=>{
+				set(val) {
+					this.goodslist = this.goodslist.map(item => {
 						item.checked = val
 						return item
 						// console.log(this.goodslist);
 					})
 				},
-				
+
 			},
-			
-			
+
+
 		}
 
 
@@ -108,7 +132,11 @@ import { Card, Step, Steps, SubmitBar, Stepper } from "vant";
 
 <style lang="scss" scoped>
 	#app {
-
+		.van-card__title{
+			padding-right: 154px;
+			font-weight: 16px;
+			font-weight:600;
+		}
 		.hz-group {
 			margin-top: 8px;
 			border-bottom: 0.5px solid #f4f4f4;
@@ -124,7 +152,8 @@ import { Card, Step, Steps, SubmitBar, Stepper } from "vant";
 
 		.hz-price {
 			color: #C82333;
-			&::before{
+			padding-right: 166px;
+			&::before {
 				content: '￥';
 			}
 		}

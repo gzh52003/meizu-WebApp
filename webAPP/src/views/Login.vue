@@ -81,14 +81,17 @@ export default {
     // 登录
     async onLogin() {
       const { data } = await this.$request.get("/login", {
+		  
+		
         params: {
           ...this.reul,
         },
       });
+	    console.log(data)
 
       if (data.code === 1) {
         Toast.success("登录成功");
-        localStorage.setItem("currentUser", JSON.stringify(data.data));
+        localStorage.setItem("currentUser", JSON.stringify({...data.data}));
         this.$router.push("/home");
       } else if (data.code === 0) {
         Toast.fail("账号错误或者密码错误");
