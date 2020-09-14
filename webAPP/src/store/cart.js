@@ -56,13 +56,20 @@ const cart = {
 				
 			});
 			 goodsList = goodsList[0]
-			console.log("goodsList=",goodsList)
+			
 			 const {data} = await request.put('/cart/eidt/'+_id,{qty:goodsList.qty})
 			
 		},
 		 // 删除商品
-		 remove(state,_id){
-            state.GoodsStar = state.GoodsStar.filter(item=>item._id!==_id)
+		 async remove(state,{_id}){
+          
+			
+			const {data} = await request.delete('/cart/'+_id)
+			if(data.code===1){
+				 state.GoodsStar = state.GoodsStar.filter(item=>item._id!==_id)
+				 Notify({ type: 'danger', message: '删除成功' })
+			}
+			
         },
 
         // 清空购物车

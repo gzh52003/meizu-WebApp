@@ -16,7 +16,7 @@
 		<template v-for="item in GoodsStar">
 			<van-row style="background-color: #fff;">
 				<van-col span="2" style="padding:40px 0px 0px 10px; ">
-					<van-checkbox class="hz-checkbox" style=" psomargin-right: 10px; z-index: 100;" v-model="item.checked"></van-checkbox>
+					<van-checkbox @click="changeGo(item.checked,item)" class="hz-checkbox" style=" psomargin-right: 10px; z-index: 100;" v-model="item.checked"></van-checkbox>
 
 				</van-col>
 				<van-col span="22">
@@ -29,7 +29,7 @@
 
 						<template #footer>
 							<van-stepper :value="item.qty" input-width="20px" button-size="20px" theme="round" async-change integer @change="changeQty(item._id,$event)" />
-							<!-- async-change: 点击按钮时不会直接修改数量，而是根据value的值来显示 -->
+							
 							</p>
 						</template>
 					</van-card>
@@ -38,7 +38,7 @@
 		</template>
 
 
-		<van-submit-bar button-text="删除">
+		<van-submit-bar @submit="removeItem()" button-text="删除">
 			<div style="position: absolute; left: 10px;">
 
 				<van-checkbox v-model="checkAll">全选</van-checkbox>
@@ -76,11 +76,26 @@
 		name: "DelCart",
 		data() {
 			return {
-				// checked: true
+				 checkBox:[]
 			}
 		},
 
 		methods: {
+			changeGo(checked,item){
+					if(checked){
+						this.checkBox.unshift(item)
+						
+					
+					}else{
+						this.checkBox=[{id:0}]
+					}
+					
+					
+				},
+				removeItem(){
+					const {_id} = this.checkBox[0]
+					this.$store.commit('remove',{_id})
+				},
 			goback() {
 				this.$router.go(-1)
 
