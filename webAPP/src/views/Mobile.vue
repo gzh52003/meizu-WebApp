@@ -19,7 +19,7 @@
 	
 	
 	import MzuFooter from './MzuFooter.vue'
-	console.log(MzuFooter);
+	
 	export default{
 		data(){
 			return{

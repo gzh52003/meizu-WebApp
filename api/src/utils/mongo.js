@@ -74,14 +74,14 @@ async function update(colName, query, newData) {
 		client
 	} = await connect()
 
-
+		
 	const collection = db.collection(colName)
 
 	if (query._id && typeof query._id === 'string') {
 		query._id = ObjectId(query._id)
 
 	}
-
+	
 	const result = await collection.updateMany(query, newData)
 	return result
 }

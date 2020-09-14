@@ -18,8 +18,19 @@ router.get('/list', async (req, res) => {
 	}))
 
 })
+//查询单个数据
+router.get('/list/:id', async (req, res) => {
+		const {id} = req.params
+	
+	const result = await mongo.find('cart', {_id:id})
+
+	res.send(formatData({
+		data: result[0]
+	}))
+
+})
 //新增购物车商品
-router.post('/add/:id', async (req, res) => {
+router.post('/add', async (req, res) => {
 
 	let {
 		name,
@@ -48,10 +59,10 @@ router.post('/add/:id', async (req, res) => {
 
 })
 //购物车商品数量修改
-router.post('/eidt/:id', async (req, res) => {
+router.put('/eidt/:id', async (req, res) => {
+	let {id} = req.params
 	let {
 		name,
-		_id,
 		skuprice,
 		img,
 		title,
@@ -60,29 +71,19 @@ router.post('/eidt/:id', async (req, res) => {
 	
 
 	let newData = {
-		name,
-		_id,
-		skuprice,
-		img,
-		title,
-		qty
+		// name,
+		// skuprice,
+		// img,
+		// title,
+		qty,
 	}
-
-
 
 	try {
 
-		await mongo.update('cart', {
-			_id: _id
-		}, {
-			$set: newData
-		})
-		res.send(formatData({
-			data: {
-				_id: _id
-			}
-		}))
+		 await mongo.update('cart',{_id:id},{$set:newData})
+		res.send(formatData())
 	} catch (err) {
+		
 		res.send(formatData({
 			code: 0
 		}))

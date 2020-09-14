@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
+     
     },
     // 登录
     async onLogin() {
@@ -87,7 +87,7 @@ export default {
           ...this.reul,
         },
       });
-	    console.log(data)
+	   
 
       if (data.code === 1) {
         Toast.success("登录成功");

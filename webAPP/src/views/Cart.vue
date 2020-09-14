@@ -1,5 +1,5 @@
 <template>
-	<div style="background-color: #f4f4f4;">
+	<div style="background-color: #f4f4f4; margin-bottom: 86px;">
 		<van-nav-bar title="购物车">
 			<template #left>
 				<van-icon name="arrow-left" @click="goback" size="25" color="#5b5b5b"></van-icon>
@@ -77,7 +77,17 @@
 					
 				},
 			gotoDetail(id) {
-				this.$router.push('/goods/' + id);
+				this.$router.push(
+				{
+					name:"Goods",
+					params:{
+						id,
+						iq:0
+					}
+					
+				}
+			
+				);
 			},
 			goback() {
 				this.$router.go(-1)
@@ -99,7 +109,7 @@
 			},
 			checkAll: {
 				get() {
-					// console.log(this.GoodsStar);
+					
 					return this.GoodsStar.every(item => item.checked)
 
 				},
@@ -107,7 +117,7 @@
 					this.GoodsStar = this.GoodsStar.map(item => {
 						item.checked = val
 						return item
-						// console.log(this.GoodsStar);
+						
 					})
 				},
 
@@ -116,9 +126,6 @@
 				return this.$store.getters.totalPrice
 
 			},
-			// getCart(){
-			// 	return console.log("cart=",this.$context);
-			// }
 			
 		},
 		created(){

@@ -1,4 +1,4 @@
-const whiteList = ["http://39.107.234.250:2004","http://39.107.234.250:2005","http://39.107.234.250:2006","http://localhost:8080"]
+const whiteList = ["http://39.107.234.250:2004","http://39.107.234.250:2005","http://39.107.234.250:2006","http://localhost:8080","http://localhost:8081"]
 function cors(req,res,next){
     // 设置响应头
   

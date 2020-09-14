@@ -34,7 +34,7 @@ import MzuFooter from './MzuFooter.vue'
         methods:{
             // 点击事件，点击商品跳转详情页
             gotoDetail(id){
-                // console.log(id);
+               
                 this.$router.push({
                     name:'Goods',
                     params:{

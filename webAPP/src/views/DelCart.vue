@@ -1,5 +1,5 @@
 <template>
-	<div style="background-color: #f4f4f4;">
+	<div style="background-color: #f4f4f4;margin-bottom: 60px;">
 		<van-nav-bar title="购物车">
 			<template #left>
 				<van-icon name="arrow-left" @click="goback" size="25" color="#5b5b5b"></van-icon>
@@ -13,7 +13,7 @@
 			</van-checkbox>
 
 		</div>
-		<template v-for="item in goodslist">
+		<template v-for="item in GoodsStar">
 			<van-row style="background-color: #fff;">
 				<van-col span="2" style="padding:40px 0px 0px 10px; ">
 					<van-checkbox class="hz-checkbox" style=" psomargin-right: 10px; z-index: 100;" v-model="item.checked"></van-checkbox>
@@ -102,21 +102,21 @@
 
 		},
 		computed: {
-			goodslist() {
+			GoodsStar() {
 
-				return this.$store.state.cart.goodslist
+				return this.$store.state.cart.GoodsStar
 			},
 			checkAll: {
 				get() {
-					// console.log(this.goodslist);
-					return this.goodslist.every(item => item.checked)
+					
+					return this.GoodsStar.every(item => item.checked)
 
 				},
 				set(val) {
-					this.goodslist = this.goodslist.map(item => {
+					this.GoodsStar = this.GoodsStar.map(item => {
 						item.checked = val
 						return item
-						// console.log(this.goodslist);
+						
 					})
 				},
 

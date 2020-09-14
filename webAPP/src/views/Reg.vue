@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
+    
     },
     // 判断用户名是否存在
     async checkName() {
@@ -68,7 +68,7 @@ export default {
           username,
         },
       });
-      console.log(data);
+     
       if (data.code === 0) {
         const repeat = this.reul.username.length;
         if (repeat === 0) {

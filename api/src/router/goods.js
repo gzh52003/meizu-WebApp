@@ -31,6 +31,7 @@ router.get('/:id/kucun', async (req, res) => {
 	//处理排序参数
 	const {id} = req.params;
 	var kucun = 10
+	
 	res.send(formatData({
 		data: kucun
 	}))
@@ -59,6 +60,8 @@ router.get('/paging', async (req, res) => {
 router.get('/:id',async (req,res)=>{
 	
 	const {id} = req.params
+	
+	
 	
 	const  result = await mongo.find('goods',{_id:id})
 	
