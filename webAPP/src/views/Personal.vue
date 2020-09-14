@@ -123,19 +123,19 @@ export default {
   },
 
   methods: {
-    //代付款
+
     gotoReady() {
       this.$router.push("/ready");
     },
-    //代发货
+
     gotoDeliver() {
       this.$router.push("/deliver");
     },
-    //代收货
+
     gotoReceiving() {
       this.$router.push("/receiving");
     },
-    //售后
+
     gotoRefund() {
       this.$router.push("/refund");
     },
