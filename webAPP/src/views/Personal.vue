@@ -40,15 +40,23 @@
         icon="pending-payment"
         text="代付款"
         style="border-right: 1px solid #ccc;"
+        @click="gotoReady"
       />
-      <van-grid-item color="#ccc" icon="peer-pay" text="代发货" style="border-right: 1px solid #ccc;" />
+      <van-grid-item
+        color="#ccc"
+        icon="peer-pay"
+        text="代发货"
+        style="border-right: 1px solid #ccc;"
+        @click="gotoDeliver"
+      />
       <van-grid-item
         color="#ccc"
         icon="logistics"
         text="待收货"
         style="border-right: 1px solid #ccc;"
+        @click="gotoReceiving"
       />
-      <van-grid-item color="#ccc" icon="after-sale" text="退款/售后" />
+      <van-grid-item color="#ccc" icon="after-sale" text="退款/售后" @click="gotoRefund" />
     </van-grid>
     <van-grid :border="false" :column-num="4" style="border-bottom: 10px solid #f3f3f3;">
       <van-grid-item>
@@ -86,8 +94,8 @@ import {
   Image as VanImage,
   Icon,
   Cell,
-  CellGroup, 
-  Dialog
+  CellGroup,
+  Dialog,
 } from "vant";
 
 Vue.use(NavBar);
@@ -98,7 +106,6 @@ Vue.use(VanImage);
 Vue.use(Cell);
 Vue.use(CellGroup);
 Vue.use(Dialog);
-
 
 export default {
   name: "Personal",
@@ -116,6 +123,22 @@ export default {
   },
 
   methods: {
+
+    gotoReady() {
+      this.$router.push("/ready");
+    },
+
+    gotoDeliver() {
+      this.$router.push("/deliver");
+    },
+
+    gotoReceiving() {
+      this.$router.push("/receiving");
+    },
+
+    gotoRefund() {
+      this.$router.push("/refund");
+    },
     // 登录
     gotoLogin() {
       this.$router.push("/login");
@@ -127,10 +150,10 @@ export default {
       })
         .then(() => {
           localStorage.removeItem("currentUser");
-          this.$router.push('/login')
+          this.$router.push("/login");
         })
         .catch(() => {
-          return 
+          return;
         });
     },
     // 获取用户名
@@ -146,12 +169,12 @@ export default {
     gotoOrder() {
       //判断用户是否登录
       const currentUser = localStorage.getItem("currentUser");
-      if(currentUser){
+      if (currentUser) {
         //登陆了(跳转到订单页)
-        this.$router.push('/whole')
-      }else{
+        this.$router.push("/whole");
+      } else {
         //没登录(跳转到登录注册页面)
-        this.$router.push('/login')
+        this.$router.push("/login");
       }
     },
   },
