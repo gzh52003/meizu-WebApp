@@ -27,7 +27,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="skuid" label="商品Id" width="100"></el-table-column>
-      <el-table-column prop="" show-overflow-tooltip label="用户名称"></el-table-column>
+      <el-table-column prop="name" show-overflow-tooltip label="商品名称"></el-table-column>
       <el-table-column prop="" label="物流信息" width="100"></el-table-column>
       <el-table-column prop="" show-overflow-tooltip label="收货地址"></el-table-column>
 

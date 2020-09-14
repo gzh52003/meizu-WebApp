@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let baseURL='http://39.107.234.250:2003'
+let baseURL='http://localhost:2003'
 
 
 const request = axios.create({
